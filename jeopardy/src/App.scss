@@ -1,0 +1,98 @@
+@import './colors.scss';
+
+.App {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    min-height: 100vh;
+    width: 100%;
+    background: radial-gradient(circle at bottom, $light-red, $red);
+    
+    // Main Game Header
+    .header {
+        display: flex;
+        margin: 0 auto;
+        width: 70%;
+        &-outer-shape {
+            margin: 30px 0;
+            width: 100%;
+            border-width: 25px 40px;
+            border-style: solid;
+            border-color: $yellow;
+            border-radius: 30px;
+            box-shadow: 0 0 25px #333;
+        }
+        &-inner-shape {
+            display: flex;
+            justify-content: center;
+            width: calc(100% + 14px);
+            margin: -7px;
+            border-width: 20px 30px;
+            border-style: solid;
+            border-color: $light-blue;
+            border-radius: 25px;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 15px #333;
+        }
+        &-img {
+            width: auto;
+            height: 150px;
+        }
+    }
+    .game-board {
+        display: flex;
+        margin: 20px auto;
+        min-width: 70%;
+        border-width: 25px 45px;
+        border-style: solid;
+        border-color: $yellow;
+        border-radius: 30px;
+        background-color: $yellow;
+        box-shadow: 0 0 25px #333;
+        box-sizing: border-box;
+        &-category {
+            display: flex;
+            flex-flow: column;
+            width: 125px;
+            &:not(:last-of-type) {
+                margin-right: 10px;
+            }
+            &-header-cell,
+            &-body-cell {
+                display: flex;
+                height: 80px;
+                align-items: center;
+                padding: 10px;
+                border-radius: 8px;
+                box-shadow: inset 0 0 15px #333;
+            }
+            &-header-cell {
+                background-color: #eee;
+                color: $red;
+                font-weight: 900;
+                text-transform: capitalize;
+                margin-bottom: 10px;
+            }
+            &-body-cell {
+                justify-content: center;
+                background: radial-gradient(circle, $blue, #fff 300%);
+                font-size: 35px;
+                color: $yellow;
+                font-weight: bold;
+                &:not(:last-of-type) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        // &-grid {
+        //     display: grid;
+        //     grid-template-columns: repeat(auto-fill, 120px);
+        //     grid-template-rows: repeat(auto-fill, 100px);
+        //     grid-auto-flow: column;
+        //     grid-gap: 10px;
+        // }
+    }
+} 
+// .column {
+//     display: contents;
+// }
