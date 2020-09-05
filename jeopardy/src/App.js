@@ -3,15 +3,15 @@ import GameHeader from './GameHeader';
 import GameBoard from './GameBoard';
 
 function App() {
-  const categoryCount = 20;
-  const categoryOffset = 20;
-  // const [categories, setCategories] = useState([]);
+  const categoryCount = 6;
+  const categoryOffset = 0;
   const [cluesArray, setClues] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setIsLoading(true);
       let categoryData = await fetch(
         `http://jservice.io/api/categories?count=${categoryCount}&offset=${categoryOffset}`,
         {
@@ -19,8 +19,6 @@ function App() {
         }
       )
       categoryData = await categoryData.json()
-
-      // setCategories(categoryData);
       
       let clueData = await Promise.all(
         categoryData.map(async category => {
@@ -34,6 +32,7 @@ function App() {
       }));
   
       setClues(clueData);
+      setIsLoading(false);
     }
 
     fetchCategories();
@@ -47,7 +46,7 @@ function App() {
     <div className="App">
       <GameHeader />
       <div className="game-board">
-          <GameBoard cluesArray={cluesArray} />
+          <GameBoard cluesArray={cluesArray} loading={isLoading} />
       </div>
       <button className="action-button">Reset Game</button>
     </div>

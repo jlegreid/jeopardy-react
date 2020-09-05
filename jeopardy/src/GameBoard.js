@@ -1,11 +1,18 @@
 import React from 'react';
 import GameBoardColumn from './GameBoardColumn';
+import LoadingIcon from './LoadingIcon';
 
 function GameBoard(props) {
-    const boardColumn = props.cluesArray.map((cluesByCategory, index) => {
-        return <GameBoardColumn key={index} id={index} cluesByCategory={cluesByCategory}/>;
-    });
-    return boardColumn;
+     if (props.loading) {
+        return (
+            <LoadingIcon loadingText = {"loading clues"}/>
+        )
+    } else {
+        const boardColumn = props.cluesArray.map((cluesByCategory, index) => {
+            return <GameBoardColumn key={index} id={index} cluesByCategory={cluesByCategory}/>;
+        });
+        return boardColumn;
+    }
 };
 
 export default GameBoard
