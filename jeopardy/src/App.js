@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import GameHeader from './GameHeader';
 import GameBoard from './GameBoard';
 import { ModalProvider } from './ModalProvider';
-import Modal from './Modal';
 
 function App() {
   const [categoryCount, setCategoryCount] = useState(6);
@@ -10,7 +9,6 @@ function App() {
   const [clueCount, setClueCount] = useState(5);
   const [cluesArray, setClues] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   // const [toggleClue, setToggleClue] = useState(false);
 
   useEffect(() => {
@@ -55,16 +53,11 @@ function App() {
     setClueCount(clueCount + (clueCountNumber))
   }
 
-  // const handleClue = (e) => {
-  //   console.log(e.target.clue);
-  //   setToggleClue(true);
-  // }
-
   console.log(cluesArray);
 
 
   return (
-    <ModalProvider context={setIsModalOpen}>
+    <ModalProvider>
       <div className="App">
         <GameHeader />
         <div className="game-board">
@@ -75,9 +68,6 @@ function App() {
             loading={isLoading} 
             clueCount={clueCount} 
           />
-          {isModalOpen && (
-            <Modal onClose={() => setIsModalOpen(false)} />
-          )}
         </div>
         <button className="action-button increment-arrow arrow-down" onClick={() => handleCategoryCount(-1)} disabled={categoryCount <= 1}>less categories</button>
         <button className="action-button increment-arrow arrow-up" onClick={() => handleCategoryCount(1)}>more categories</button>
