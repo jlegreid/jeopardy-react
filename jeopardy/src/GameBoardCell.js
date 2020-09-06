@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
+import { ModalContext } from './ModalProvider';
+
 
 function GameBoardCell(props) { 
+    const onButtonClick = useContext(ModalContext);
+
     if (props.type === 'header') {
         return (
             <div className={`game-board-category-header-cell`}>
@@ -9,11 +13,14 @@ function GameBoardCell(props) {
         )
     } else if (props.type === 'body') {
         return (
-            <div className={`game-board-category-body-cell`}>
-                <span id={props.clue.id} category={props.clue.category_id}>${props.clue.value}</span>
+            <div>
+                <div className={`game-board-category-body-cell`} clue={props.clue} onClick={onButtonClick}>
+                    <span id={props.clue.id} category={props.clue.category_id}>${props.clue.value}</span>
+                </div>
             </div>
         )
     } 
+    
     return null;
 
 };

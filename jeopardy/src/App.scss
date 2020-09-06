@@ -43,7 +43,6 @@
     .game-board {
         display: flex;
         margin: 20px auto;
-        min-width: 70%;
         min-height: 200px;
         border-width: 25px 45px;
         border-style: solid;
@@ -76,6 +75,7 @@
                 margin-bottom: 10px;
             }
             &-body-cell {
+                @include futuraPtCondensed(800);
                 justify-content: center;
                 background: radial-gradient(circle, $blue, #fff 300%);
                 font-size: 35px;
@@ -123,6 +123,30 @@
                 text-transform: uppercase;
                 font-weight: bold;
             }
+        }
+    }
+    .modal {
+        @include futuraPtCondensed(500);
+        font-size: 100px;
+        line-height: 110px;
+        position: absolute;
+        top: 100px;
+        right: 100px;
+        bottom: 100px;
+        left: 100px;
+        border-radius: 20px;
+        background-color: $blue;
+        padding: 60px;
+        box-shadow: 0 2px 25px #333;
+        &:before {
+            content: '';
+            position: absolute;
+            border: 5px solid white;
+            top: 20px;
+            right: 20px;
+            bottom: 20px;
+            left: 20px;
+            border-radius: 18px;
         }
     }
     @keyframes loadingCircle {
