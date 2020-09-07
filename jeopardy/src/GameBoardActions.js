@@ -1,13 +1,23 @@
 import React from 'react';
 
-function GameBoardActions({ incrementCategoryUp, incrementCategoryDown, incrementClueCountUp, incrementClueCountDown, getNewGame, ...props}) {
+function GameBoardActions({ incrementCategoryUp, incrementCategoryDown, incrementClueUp, incrementClueDown, startNewGame, onClose, ...props}) {
     return (
         <div className="GameBoardActions">
-            <button className="action-button increment-arrow arrow-down" onClick={incrementCategoryDown} disabled={props.categoryCount <= 1}>less categories</button>
-            <button className="action-button increment-arrow arrow-up" onClick={incrementCategoryUp}>more categories</button>
-            <button className="action-button" onClick={getNewGame}>New Game</button>
-            <button className="action-button increment-arrow arrow-down" onClick={incrementClueCountDown} disabled={props.clueCount <= 1}>less clues</button>
-            <button className="action-button increment-arrow arrow-up" onClick={incrementClueCountUp}>more clues</button>
+            <div className="category-config">
+                <span>Categories</span>
+                <button className="action-button increment-arrow arrow-down" onClick={incrementCategoryDown} disabled={props.categoryCount <= 1}>-</button>
+                <span>{props.categoryCount}</span>
+                <button className="action-button increment-arrow arrow-up" onClick={incrementCategoryUp}>+</button>
+            </div>
+            <div className="clue-config">
+                <span>Clues</span>
+                <button className="action-button increment-arrow arrow-down" onClick={incrementClueDown} disabled={props.clueCount <= 1}>-</button>
+                <span>{props.clueCount}</span>
+                <button className="action-button increment-arrow arrow-up" onClick={incrementClueUp}>+</button>
+            </div>
+            <br />
+            <button className="action-button" onClick={startNewGame}>Go!</button>
+            <button className="action-button secondary" onClick={onClose}>Nah</button>
         </div>
     )
 };

@@ -273,6 +273,13 @@
     }
 }
 
+.alert-modal {
+    .modal-body {
+        background-color: $blue;
+
+    }
+}
+
 // Buttons
 button.action-button {
     @include futuraPtCondensed(500);
@@ -295,11 +302,14 @@ button.action-button {
     &:focus {
         outline: initial;
     }
-    &:active {
+    &:active, &:disabled {
         outline: initial;
         background-color: mix($yellow, black, 80%);
         box-shadow: 0 0 5px rgba(black, 0.7);
         transform: scale(0.95);
+    }
+    &:disabled {
+        cursor: not-allowed;
     }
     &.secondary {
         color: white;

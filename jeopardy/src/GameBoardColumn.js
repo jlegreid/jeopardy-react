@@ -17,13 +17,12 @@ function GameBoardColumn(props) {
     });
 
     return (
-        <div id={props.id} className="game-board-category">
-            <GameBoardCell 
-                key={props.cluesByCategory.id} 
-                category={props.cluesByCategory} 
-                // handleClue={props.handleClue} 
-                type="header"
-            />
+        <div category={props.cluesByCategory.id} className="game-board-category">
+            <div className="game-board-category-header-cell">
+                <div className="game-board-category-header-cell-button">
+                    <span>{props.cluesByCategory.title}</span>
+                </div>
+            </div>
             {boardCells}
         </div>
     )
