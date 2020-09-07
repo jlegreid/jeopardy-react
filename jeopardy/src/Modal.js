@@ -2,15 +2,14 @@ import React, { useContext } from 'react';
 import { ModalContext } from './ModalProvider';
 import ReactDOM from "react-dom";
 
-export function Modal({ onClose, children }) {
+export function Modal({ children, ...props }) {
     const modalNode = useContext(ModalContext);
 
 
     return modalNode
         ? ReactDOM.createPortal(
-            <div className="modal">
+            <div className={"modal " + props.classes}>
                 {children}
-                <button className="action-button secondary" onClick={onClose}>Done</button>
             </div>,
             modalNode)
         : null;

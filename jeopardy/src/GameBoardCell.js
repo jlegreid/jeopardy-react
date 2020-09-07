@@ -3,9 +3,12 @@ import Modal from './Modal';
 
 function GameBoardCell({ onClose, ...props }) { 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isAnswer, setShowAnswer] = useState(false);
-
-    console.log(isModalOpen);
+    const [showAnswer, setShowAnswer] = useState('');
+    const [clueViewed, setClueViewed] = useState(false);
+    const handleClueClick = () => {
+        setIsModalOpen(true)
+        setClueViewed(true);
+    }
 
     if (props.type === 'header') {
         return (
@@ -19,22 +22,23 @@ function GameBoardCell({ onClose, ...props }) {
                 <button 
                     id={props.clue.id} 
                     category={props.clue.category_id} 
-                    onClick={() => setIsModalOpen(true)}>
-                    ${props.clue.value}
+                    onClick={handleClueClick}>
+                    {clueViewed ? '' : <span>${props.clue.value}</span>}
                 </button>
                 {isModalOpen && (
-                    <Modal onClose={() => setIsModalOpen(false)}>
-                        {isAnswer ? 
-                            <div className="modal-body">
+                    <Modal classes="clue-modal" onClose={() => setIsModalOpen(false)}>
+                        <div className={"modal-body " + showAnswer}>
+                            <div className="clue-card answer-side">
                                 <span>{props.clue.answer}</span>
-                                <button onClick={() => setShowAnswer(true)}>Show Answer</button>
+                                <button onClick={() => setShowAnswer(null)}>Show Question</button>
+                                <button className="action-button secondary" onClick={onClose}>Done</button>
                             </div>
-                        : 
-                            <div className="modal-body">
-                                <span>{props.clue.answer}</span>
-                                <button onClick={() => setShowAnswer(true)}>Show Answer</button>
+                            <div className="clue-card question-side">
+                                <span>{props.clue.question}</span>
+                                <button onClick={() => setShowAnswer('show-answer')}>Show Answer</button>
+                                <button className="action-button secondary" onClick={onClose}>Done</button>
                             </div>
-                        }
+                        </div>
                     </Modal>
                 )}
             </div>

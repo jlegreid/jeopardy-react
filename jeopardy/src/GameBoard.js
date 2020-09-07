@@ -6,7 +6,9 @@ function GameBoard(props) {
 
     if (props.loading) {
         return (
-            <LoadingIcon loadingText = {"loading clues"}/>
+            <div className="game-board">
+                <LoadingIcon loadingText = {"loading clues"}/>
+            </div>
         )
     } else {
         const boardColumn = props.cluesArray.map((cluesByCategory, index) => {
@@ -16,11 +18,14 @@ function GameBoard(props) {
                 id={index} 
                 cluesByCategory={cluesByCategory} 
                 clueCount={props.clueCount}
-                // handleClue={props.handleClue} 
             />
             )
         });
-        return boardColumn;
+        return (
+            <div className="game-board">
+                {boardColumn}
+            </div>
+        )
     }
 };
 
