@@ -1,0 +1,7 @@
+@mixin futuraPtCondensed($weight: 400) {
+    font-family: futura-pt-condensed, sans-serif;
+    font-weight: $weight;
+    font-style: normal;
+}
+
+// Available weights are 400, 500, 700, 800

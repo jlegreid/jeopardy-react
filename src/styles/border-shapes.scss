@@ -1,0 +1,24 @@
+// Border shapes styles
+.inner-shape-1 {
+  background-color: $yellow;
+  padding: 10px 30px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  box-shadow: 0 2px 25px #333;
+}
+.inner-shape-2 {
+  background-color: $light-blue;
+  padding: 7px 25px;
+  border-radius: 25px;
+  box-shadow: inset 0 2px 25px #333;
+}
+.inner-shape-3 {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $light-red;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: inset 0 2px 25px #333;
+}
