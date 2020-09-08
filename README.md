@@ -4,7 +4,7 @@
 This Jeopardy game came about as a result of a coding challenge and a chance to learn React.js. It uses the [JService](jservice-url) API to feed the categories and clues. It is also an excersize in using React functional components and React hooks instead of class components.
 
 It was inspired by the first 1984 Jeopardy Television Game Show set where Alex Trebek first took over as host.
-![](jeopardy-set)
+![set](jeopardy-set)
 
 ![](jeopardy-logo)
 
@@ -63,8 +63,8 @@ J.Morgna Legreid – [@jlegreid](https://twitter.com/jlegreid) – jmorgan.legre
 <!-- Markdown link & img dfn's -->
 [jservice-url]: http://jservice.io/
 [issues-url]: https://github.com/jlegreid/jeopardy-react/issues
-[jeopardy-logo]: ./public/header-logo.png
-[new-game]: ./public/new-game.png
-[full-game]: ./public/full-game.png
-[clue-card]: ./public/clue-card.png
-[jeopardy-set]: ./public/jeopardy-set.png
+[jeopardy-logo]: public/header-logo.png
+[new-game]: public/new-game.png
+[full-game]: public/full-game.png
+[clue-card]: public/clue-card.png
+[jeopardy-set]: public/jeopardy-set.png
