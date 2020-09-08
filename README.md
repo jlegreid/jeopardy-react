@@ -1,12 +1,12 @@
 # Jeopardy! - Online Game
 > A simple Jeopardy trivia game built in React.js.
 
-This Jeopardy game came about as a result of a coding challenge and a chance to learn React.js. It uses the [JService](jservice-url) API to feed the categories and clues. It is also an excersize in using React functional components and React hooks instead of class components.
+This Jeopardy game came about as a result of a coding challenge and a chance to learn React.js. It uses the [JService][jservice-url] API to feed the categories and clues. It is also an excersize in using React functional components and React hooks instead of class components.
 
 It was inspired by the first 1984 Jeopardy Television Game Show set where Alex Trebek first took over as host.
-![set](jeopardy-set)
+![][jeopardy-set]
 
-![](jeopardy-logo)
+![][jeopardy-logo]
 
 ## How to play
 
@@ -24,19 +24,19 @@ serve -s build
 
 ## Gameplay
 
-![](new-game)
+![][new-game]
 
 To set up your first round, choose how many categories and how many clues in each category you would like to load. The default is 6 categories with 5 clues in each based on the original TV gameshow.
 
-![](full-game)
+![][full-game]
 
 After each round is complete, click or tap "New Game" to repopulate the gameboard with all new categories and clues.
 
-![](clue-card)
+![][clue-card]
 
 Good luck, and watch out for the Daily Double!
 
-All bugs can be filed on the [Issues Board](issues-url)
+All bugs can be filed on the [Issues Board][issues-url]
 
 
 
