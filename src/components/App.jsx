@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import GameHeader from './GameHeader';
 import GameBoard from './game-board/GameBoard';
-import GameBoardActions from './GameBoardActions';
-import Shapes from '../Shapes';
-import { ModalProvider } from '../ModalProvider';
-import { Modal } from '../Modal';
+import GameBoardActions from './game-board/GameBoardActions';
+import Shapes from './Shapes';
+import { ModalProvider } from '../providers/ModalProvider';
+import { Modal } from './modals/Modal';
 import { ClueProvider } from '../providers/ClueProvider';
 import { lastId, resetId } from '../utils/SetId';
 

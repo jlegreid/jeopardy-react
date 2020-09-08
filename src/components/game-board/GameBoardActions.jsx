@@ -1,5 +1,5 @@
 import React from 'react';
-import GameConfigSection from './modals/GameConfigSection';
+import GameConfigSection from '../modals/GameConfigSection';
 
 function GameBoardActions({
   incrementCategoryUp,

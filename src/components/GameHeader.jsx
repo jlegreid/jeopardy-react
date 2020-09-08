@@ -1,6 +1,6 @@
 import React from 'react';
 import Shapes from './Shapes';
-import logo from './jeopardy-logo.png';
+import logo from '../assets/jeopardy-logo.png';
 
 function GameHeader() {
   return (

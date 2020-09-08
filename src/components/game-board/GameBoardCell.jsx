@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Modal from './Modal';
-import ClueCard from './clue-card/ClueCard';
-import { ClueContext } from '../providers/ClueProvider';
-import { setId } from './utils/SetId';
+import Modal from '../modals/Modal';
+import ClueCard from '../clue-card/ClueCard';
+import { ClueContext } from '../../providers/ClueProvider';
+import { setId } from '../../utils/SetId';
 
 function GameBoardCell({ onClose, ...props }) {
   const [isModalOpen, setIsModalOpen] = useState(false);

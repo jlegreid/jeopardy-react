@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ModalContext } from './ModalProvider';
+import { ModalContext } from '../../providers/ModalProvider';
 import ReactDOM from 'react-dom';
 
 export function Modal({ children, ...props }) {
