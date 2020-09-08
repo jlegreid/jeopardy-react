@@ -1,57 +1,59 @@
 @import './colors.scss';
 @import './fonts.scss';
-
+body {
+    overflow: hidden;
+}
+#root {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: radial-gradient(circle at bottom, $light-red, $red);
+}
 .App {
     display: flex;
     align-items: center;
     flex-flow: column;
     min-height: 100vh;
     width: 100%;
-    background: radial-gradient(circle at bottom, $light-red, $red);
+    margin-bottom: 20px;
     
     // Main Game Header
     .header {
         display: flex;
-        margin: 0 auto;
-        width: 70%;
-        &-outer-shape {
-            margin: 30px 0;
+        width: 100vw;
+        max-width: 800px;
+        margin: 30px 20px;
+        box-sizing: border-box;
+        .inner-shape-1 {
             width: 100%;
-            border-width: 25px 40px;
-            border-style: solid;
-            border-color: $yellow;
-            border-radius: 30px;
-            box-shadow: 0 0 25px #333;
         }
-        &-inner-shape {
-            display: flex;
-            justify-content: center;
-            width: calc(100% + 14px);
-            margin: -7px;
-            border-width: 20px 30px;
-            border-style: solid;
-            border-color: $light-blue;
-            border-radius: 25px;
-            box-sizing: border-box;
-            box-shadow: inset 0 0 15px #333;
+        .inner-shape-3 {
+            background-color: $red;
         }
         &-img {
-            width: auto;
-            height: 150px;
-        }
+            width: 60vw;
+            max-width: 500px;
+            height: auto;
+            object-fit: contain;
+        }  
     }
 
+
     // Game Board Container
+    .game-board-scroll{
+        overflow-y: auto;
+        max-width: 100vw;
+        padding: 0 20px;
+    }
     .game-board {
         display: flex;
         margin: 20px auto;
+        width: fit-content;
         min-height: 200px;
-        border-width: 25px 45px;
-        border-style: solid;
-        border-color: $yellow;
-        border-radius: 30px;
-        background-color: $yellow;
-        box-shadow: 0 0 25px #333;
         box-sizing: border-box;
         &-category {
             display: flex;
@@ -63,6 +65,7 @@
             &-header-cell,
             &-body-cell {
                 height: 90px;
+                border-radius: 4px;
                 &-button {
                     display: flex;
                     align-items: center;
@@ -75,7 +78,7 @@
                 }
             }
             &-header-cell {
-                background-color: #785651;
+                background-color: rgba(black, 0.4);
                 margin-bottom: 10px;
                 padding: 5px;
                 &-button {
@@ -172,8 +175,15 @@
                 @include futuraPtCondensed(700);
                 text-transform: uppercase;
                 font-weight: bold;
+                color: $blue;
             }
         }
+    }
+    .new-game-prompt {
+        @include futuraPtCondensed(700);
+        color: black;
+        font-size: 40px;
+        margin: 20px;
     }
 } 
 
@@ -184,18 +194,25 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.7);
     display: flex;
     align-items: center;
     justify-content: center;
     
     .modal-body {
+        position: relative;
         width: 70vw;
         max-width: 800px;
         min-width: 400px;
         height: 70vh;
         min-height: 500px;
         max-height: 800px;
+    }
+
+    .modal-actions {
+        position: absolute;
+        bottom: 16px;
+        right: 25px;
     }
     
     button {
@@ -208,14 +225,14 @@
     perspective: 1000px;
     .modal-body {
         transform-style: preserve-3d;
-        transform: scale(0) rotateY(-180deg);
+        // transform: scale(0) rotateY(-180deg);
         transition: transform 750ms ease-out;
-        animation: cardOpen 500ms ease-out forwards;
+        animation: cardOpen 500ms ease-out;
         &.show-answer {
             transform: scale(1) rotateY(180deg);
             animation: initial;
             .clue-card.answer-side {
-                .clue-text, .clue-card-actions {
+                .clue-text, .modal-actions {
                     visibility: visible;
                 }
             }
@@ -223,6 +240,11 @@
         &.show-question {
             transform: scale(1) rotateY(0);
             animation: initial;
+            .clue-card.answer-side {
+                .clue-text, .modal-actions {
+                    visibility: visible;
+                }
+            }
         }
         .clue-card {    
             position: absolute;
@@ -237,11 +259,12 @@
             flex-flow: column;
             background-color: $blue;
             color: white;
-            padding: 60px;
+            padding: 50px 60px 100px;
             backface-visibility: hidden;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 50px;
+            font-size: 40px;
             font-weight: bold;
+            word-break: break-word;
             text-transform: uppercase;
             border-radius: 20px;
             box-sizing: border-box;
@@ -258,16 +281,37 @@
                 border-radius: 18px;
             }
             &.answer-side {
-                font-size: 80px;
+                font-size: 60px;
                 transform: rotateY(180deg);
-                .clue-text, .clue-card-actions {
+                .clue-text, .modal-actions {
                     visibility: hidden;
                 }
             }
-            .clue-card-actions {
-                position: absolute;
-                bottom: 16px;
-                right: 20px;
+            @media (max-width: 800px) {
+                font-size: 35px;
+                &.answer-side {
+                    font-size: 50px;
+                }
+            }
+            @media (max-width: 550px) {
+                font-size: 30px;
+                padding-bottom: 120px;
+                &:before {
+                    bottom: 110px;
+                }
+                &.answer-side {
+                    font-size: 40px;
+                }
+                .modal-actions {
+                    display: flex;
+                    left: 25px;
+                    .action-button {
+                        padding: 15px 10px;
+                        width: 100%;
+                        border-radius: 40px;
+                        font-size: 25px;
+                    }
+                }
             }
         }
     }
@@ -275,14 +319,80 @@
 
 .alert-modal {
     .modal-body {
-        background-color: $blue;
+        height: initial;
+        min-height: 200px;
+        .inner-shape-3 {
+            background-color: $blue;
+            padding: 40px 0 20px;
+        }
+    }
+}
+.game-config {
+    @include futuraPtCondensed(500);
 
+    &-title {
+        font-size: 40px;
+        color: white;
+        text-align: center;
+        margin: 0 20px 10px;
+        .headline {
+            font-size: 60px;
+        }
+    }
+    &-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0 50px;
+    }
+    &-section {
+        text-align: center;
+        margin: 0 30px;
+        &-header {
+            font-size: 30px;
+            color: $yellow;
+            margin-bottom: 5px;
+        }
+    }
+    &-actions {
+        border-radius: 25px;
+        background-color: $yellow;
+        box-shadow: 0 0 15px rgba(black, 0.7);
+        &-number {
+            @include futuraPtCondensed(700);
+            font-size: 26px;
+            color: $blue;
+            margin: 0 10px;
+        }
+        .action-button {
+            padding: 5px 13px;
+            margin: 0;
+            box-shadow: initial;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .game-config {
+        &-title {
+            font-size: 30px;
+            margin: 0 5px 10px;
+            .headline {
+                font-size: 40px;
+            }
+        }
+        &-row {
+            flex-flow: column;
+        }
+        &-section {
+            margin: 10px;
+        }
     }
 }
 
 // Buttons
 button.action-button {
-    @include futuraPtCondensed(500);
+    @include futuraPtCondensed(800);
     font-size: 24px;
     background-color: $yellow;
     color: $blue;
@@ -323,6 +433,54 @@ button.action-button {
             background-color: rgba(black, 0.25);
         }
     }
+    &.tertiary {
+        color: white;
+        background-color: transparent;
+        box-shadow: initial;
+        font-size: 26px;
+        &.hover {
+            color: whitesmoke;
+            background-color: rgba(black, 0.15);
+            box-shadow: initial;
+        }
+        &.active {
+            color: whitesmoke;
+            background-color: rgba(black, 0.25);
+            box-shadow: initial;
+        }
+    }
+    
+    &.large {
+        font-size: 36px;
+        border-radius: 40px;
+        padding: 10px 30px;
+        margin: 10px;
+    }
+}
+
+// Shapes
+.inner-shape-1 {
+    background-color: $yellow;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    box-shadow: 0 2px 25px #333;
+}
+.inner-shape-2 {
+    background-color: $light-blue;
+    padding: 7px 25px;
+    border-radius: 25px;
+    box-shadow: inset 0 2px 25px #333;
+}
+.inner-shape-3 {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $light-red;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: inset 0 2px 25px #333;
 }
 
 // Animations
