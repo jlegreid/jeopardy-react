@@ -1,0 +1,43 @@
+// Foundational Styles
+body {
+    overflow: hidden;
+}
+#root {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: radial-gradient(circle at bottom, $light-red, $red);
+}
+.App {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  min-height: 100vh;
+  width: 100%;
+  margin-bottom: 20px;
+  
+  // Main Game Header
+  .header {
+      display: flex;
+      width: 100vw;
+      max-width: 800px;
+      margin: 30px 20px;
+      box-sizing: border-box;
+      .inner-shape-1 {
+          width: 100%;
+      }
+      .inner-shape-3 {
+          background-color: $red;
+      }
+      &-img {
+          width: 60vw;
+          max-width: 500px;
+          height: auto;
+          object-fit: contain;
+      }  
+  }
+} 

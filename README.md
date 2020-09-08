@@ -1,11 +1,12 @@
 # Jeopardy! - Online Game
 > A simple Jeopardy trivia game built in React.js.
 
-[![NPM Version][npm-image]][npm-url]
-
 This Jeopardy game came about as a result of a coding challenge and a chance to learn React.js. It uses the [JService](jservice-url) API to feed the categories and clues. It is also an excersize in using React functional components and React hooks instead of class components.
 
-![](header.png)
+It was inspired by the first 1984 Jeopardy Television Game Show set where Alex Trebek first took over as host.
+![](jeopardy-set)
+
+![](jeopardy-logo)
 
 ## How to play
 
@@ -23,13 +24,19 @@ serve -s build
 
 ## Gameplay
 
+![](new-game)
+
 To set up your first round, choose how many categories and how many clues in each category you would like to load. The default is 6 categories with 5 clues in each based on the original TV gameshow.
+
+![](full-game)
 
 After each round is complete, click or tap "New Game" to repopulate the gameboard with all new categories and clues.
 
+![](clue-card)
+
 Good luck, and watch out for the Daily Double!
 
-All bugs can be filed on the [Issues Board](https://github.com/jlegreid/jeopardy-react/issues)
+All bugs can be filed on the [Issues Board](issues-url)
 
 
 
@@ -54,7 +61,10 @@ J.Morgna Legreid – [@jlegreid](https://twitter.com/jlegreid) – jmorgan.legre
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [jservice-url]: http://jservice.io/
 [issues-url]: https://github.com/jlegreid/jeopardy-react/issues
-[jeopardy-logo]: 
+[jeopardy-logo]: ./public/header-logo.png
+[new-game]: ./public/new-game.png
+[full-game]: ./public/full-game.png
+[clue-card]: ./public/clue-card.png
+[jeopardy-set]: ./public/jeopardy-set.png

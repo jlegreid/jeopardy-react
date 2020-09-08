@@ -1,5 +1,5 @@
 import React from 'react';
-import GameConfigSection from './GameConfigSection';
+import GameConfigSection from './modals/GameConfigSection';
 
 function GameBoardActions({
   incrementCategoryUp,
@@ -14,15 +14,15 @@ function GameBoardActions({
     <>
       <div className='game-config'>
         <div className='game-config-title'>
-          {props.firstTime ? 
+          {props.firstTime ? (
             <>
-              <span className="headline">Welcome to Jeopardy!</span>
-              <br/>
+              <span className='headline'>Welcome to Jeopardy!</span>
+              <br />
               Configure your game to get started.
             </>
-          :
-            <span className="headline">Let's play again!</span>
-          }
+          ) : (
+            <span className='headline'>Let's play again!</span>
+          )}
         </div>
         <div className='game-config-row'>
           <GameConfigSection

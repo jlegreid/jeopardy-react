@@ -1,6 +1,6 @@
 import React from 'react';
 import GameBoardColumn from './GameBoardColumn';
-import LoadingIcon from './LoadingIcon';
+import LoadingIcon from '../LoadingIcon';
 
 function GameBoard(props) {
   if (props.loading) {

@@ -1,0 +1,159 @@
+// Game Board Container
+.game-board-scroll{
+    overflow-y: auto;
+    max-width: 100vw;
+    padding: 0 20px;
+}
+.game-board {
+    display: flex;
+    margin: 20px auto;
+    width: fit-content;
+    min-height: 200px;
+    box-sizing: border-box;
+    &-category {
+        display: flex;
+        flex-flow: column;
+        width: 125px;
+        &:not(:last-of-type) {
+            margin-right: 10px;
+        }
+        &-header-cell,
+        &-body-cell {
+            height: 90px;
+            border-radius: 4px;
+            &-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                height: 100%;
+                width: 100%;
+                border: initial;
+                box-sizing: border-box;
+            }
+        }
+        &-header-cell {
+            background-color: rgba(black, 0.4);
+            margin-bottom: 10px;
+            padding: 5px;
+            &-button {
+                @include futuraPtCondensed(600);
+                font-size: 20px;
+                line-height: 20px;
+                color: $red;
+                text-transform: uppercase;
+                border: 3px solid white;
+                border-radius: 20px;
+                background: radial-gradient(circle, white, #C8C8C8 100%);
+                &.empty {
+                    border: initial;
+                    background: #C8C8C8;
+                }
+            }
+        }
+        &-body-cell {
+            padding: 8px;
+            background-color: #333;
+            &:not(:last-of-type) {
+                margin-bottom: 10px;
+            }
+            &-button {
+                @include futuraPtCondensed(800);
+                position: relative;
+                font-size: 38px;
+                color: $yellow;
+                border-radius: 15px;
+                background: radial-gradient(circle, $blue, white 500%);
+                &:hover, &:focus, &:active {
+                    outline: initial;
+                }
+                &:hover {
+                    cursor: pointer;
+                    &:before {
+                        background-color: rgba(black, 0.1);
+                    }
+                }
+                &:active {
+                    cursor: pointer;
+                    &:before {
+                        background-color: rgba(black, 0.2);
+                    }
+                }
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 15px;
+                    background-color: transparent;
+                    transition: background-color 70ms ease-out;
+                }
+            }
+        }
+    }
+    .loading-wrapper {
+        display: flex;
+        flex-flow: column;
+        margin: auto;
+        align-items: center;
+        min-width: 200px;
+        .loading-icon {
+            position: relative;
+            height: 50px;
+            width: 50px;
+            margin-bottom: 20px;
+            .circle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                transform: scale(0);
+                animation: loadingCircle 1200ms ease-in-out infinite;
+                &:nth-child(1) {
+                    background-color: $blue;
+                }
+                &:nth-child(2) {
+                    background-color: $light-blue;
+                    animation-delay: 150ms;
+                }
+                &:nth-child(3) {
+                    background-color: $yellow;
+                    animation-delay: 300ms;
+                }
+            }
+        }
+        .loading-text {
+            @include futuraPtCondensed(700);
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $blue;
+        }
+    }
+}
+
+// Animations
+
+@keyframes loadingCircle {
+  0% {
+      transform: scale(0);
+  }
+  50% {
+      transform: scale(1);
+  }
+  100% {
+      transform: scale(0);
+  }
+}
+
+@keyframes cardOpen {
+  0% {
+      transform: scale(0) rotateY(-180deg);
+  }
+  100% {
+      transform: scale(1) rotateY(0);
+  }
+}

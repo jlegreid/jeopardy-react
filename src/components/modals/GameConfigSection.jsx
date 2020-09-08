@@ -1,9 +1,12 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronRight,
+  faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
 
 function GameConfigSection({ incrementDown, incrementUp, ...props }) {
+  // Inner clue and category config in the new game modal
   return (
     <div className='game-config-section'>
       <div className='game-config-section-header'>{props.sectionHeader}</div>
@@ -16,15 +19,12 @@ function GameConfigSection({ incrementDown, incrementUp, ...props }) {
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <span className='game-config-actions-number'>{props.itemCount}</span>
-        <button
-          className='action-button increment-arrow'
-          onClick={incrementUp}
-        >
+        <button className='action-button increment-arrow' onClick={incrementUp}>
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default GameConfigSection;

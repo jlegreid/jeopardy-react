@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Modal from './Modal';
-import ClueCard from './ClueCard';
-import { ClueContext } from './ClueProvider';
+import ClueCard from './clue-card/ClueCard';
+import { ClueContext } from '../providers/ClueProvider';
 import { setId } from './utils/SetId';
 
 function GameBoardCell({ onClose, ...props }) {
@@ -13,8 +13,11 @@ function GameBoardCell({ onClose, ...props }) {
   const [answer, setAnswer] = useState(null);
   const [dailyDouble, setDailyDouble] = useState(false);
 
+  // Get the daily double Id
   const dailyDoubleId = useContext(ClueContext);
 
+  // Sets an Id for each clue, used for daily double
+  // Strips uneccessary characters from the clues
   useEffect(() => {
     setGameClueId(setId());
     setQuestion(
@@ -25,6 +28,7 @@ function GameBoardCell({ onClose, ...props }) {
     );
   }, [props.clue.question, props.clue.answer]);
 
+  // Sets the daily double
   useEffect(() => {
     if (dailyDoubleId === gameClueId) {
       setDailyDouble(true);
@@ -32,6 +36,7 @@ function GameBoardCell({ onClose, ...props }) {
     }
   }, [dailyDoubleId, gameClueId]);
 
+  // Opens the clue card and marks the board cell as viewed
   const handleClueClick = () => {
     setIsModalOpen(true);
     setClueViewed(true);

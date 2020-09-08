@@ -1,0 +1,205 @@
+// Modals
+
+// Generic Modal
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .modal-body {
+      position: relative;
+      width: 70vw;
+      max-width: 800px;
+      min-width: 400px;
+      height: 70vh;
+      min-height: 500px;
+      max-height: 800px;
+  }
+
+  .modal-actions {
+      position: absolute;
+      bottom: 16px;
+      right: 25px;
+  }
+  
+  button {
+      position: relative;
+  }
+}
+
+// Clue Modal
+.clue-modal {
+  perspective: 1000px;
+  .modal-body {
+      transform-style: preserve-3d;
+      transition: transform 750ms ease-out;
+      animation: cardOpen 500ms ease-out;
+      &.show-answer {
+          transform: scale(1) rotateY(180deg);
+          animation: initial;
+          .clue-card.answer-side {
+              .clue-text, .modal-actions {
+                  visibility: visible;
+              }
+          }
+      }
+      &.show-question {
+          transform: scale(1) rotateY(0);
+          animation: initial;
+          .clue-card.answer-side {
+              .clue-text, .modal-actions {
+                  visibility: visible;
+              }
+          }
+      }
+      .clue-card {    
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex-flow: column;
+          background-color: $blue;
+          color: white;
+          padding: 50px 60px 100px;
+          backface-visibility: hidden;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 40px;
+          font-weight: bold;
+          word-break: break-word;
+          text-transform: uppercase;
+          border-radius: 20px;
+          box-sizing: border-box;
+          box-shadow: 0 2px 25px #333;
+          transform: rotateY(0);
+          &:before {
+              content: '';
+              position: absolute;
+              border: 10px solid white;
+              top: 30px;
+              right: 30px;
+              bottom: 80px;
+              left: 30px;
+              border-radius: 18px;
+          }
+          &.answer-side {
+              font-size: 60px;
+              transform: rotateY(180deg);
+              .clue-text, .modal-actions {
+                  visibility: hidden;
+              }
+          }
+          @media (max-width: 800px) {
+              font-size: 35px;
+              &.answer-side {
+                  font-size: 50px;
+              }
+          }
+          @media (max-width: 550px) {
+              font-size: 30px;
+              padding-bottom: 120px;
+              &:before {
+                  bottom: 110px;
+              }
+              &.answer-side {
+                  font-size: 40px;
+              }
+              .modal-actions {
+                  display: flex;
+                  left: 25px;
+                  .action-button {
+                      padding: 15px 10px;
+                      width: 100%;
+                      border-radius: 40px;
+                      font-size: 25px;
+                  }
+              }
+          }
+      }
+  }
+}
+
+.alert-modal {
+  .modal-body {
+      height: initial;
+      min-height: 200px;
+      .inner-shape-3 {
+          background-color: $blue;
+          padding: 40px 0 20px;
+      }
+  }
+}
+
+// Game configuration modal
+.game-config {
+  @include futuraPtCondensed(500);
+
+  &-title {
+      font-size: 40px;
+      color: white;
+      text-align: center;
+      margin: 0 20px 10px;
+      .headline {
+          font-size: 60px;
+      }
+  }
+  &-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0 50px;
+  }
+  &-section {
+      text-align: center;
+      margin: 0 30px;
+      &-header {
+          font-size: 30px;
+          color: $yellow;
+          margin-bottom: 5px;
+      }
+  }
+  &-actions {
+      border-radius: 25px;
+      background-color: $yellow;
+      box-shadow: 0 0 15px rgba(black, 0.7);
+      &-number {
+          @include futuraPtCondensed(700);
+          font-size: 26px;
+          color: $blue;
+          margin: 0 10px;
+      }
+      .action-button {
+          padding: 5px 13px;
+          margin: 0;
+          box-shadow: initial;
+      }
+  }
+}
+
+@media (max-width: 500px) {
+  .game-config {
+      &-title {
+          font-size: 30px;
+          margin: 0 5px 10px;
+          .headline {
+              font-size: 40px;
+          }
+      }
+      &-row {
+          flex-flow: column;
+      }
+      &-section {
+          margin: 10px;
+      }
+  }
+}

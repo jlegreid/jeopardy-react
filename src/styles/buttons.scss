@@ -1,0 +1,74 @@
+// Buttons
+button.action-button {
+  @include futuraPtCondensed(800);
+  font-size: 24px;
+  background-color: $yellow;
+  color: $blue;
+  border-radius: 20px;
+  padding: 5px 20px;
+  box-shadow: 0 0 15px rgba(black, 0.7);
+  border: initial;
+  margin: 5px;
+  transform: scale(1);
+  transition: all 150ms ease-out;
+  &:hover {
+      cursor: pointer;
+      background-color: mix($yellow, black, 90%);
+      box-shadow: 0 0 12px rgba(black, 0.7);
+      transform: scale(0.99);
+  }
+  &:focus {
+      outline: initial;
+  }
+  &:active, &:disabled {
+      outline: initial;
+      background-color: mix($yellow, black, 80%);
+      box-shadow: 0 0 5px rgba(black, 0.7);
+      transform: scale(0.95);
+  }
+  &:disabled {
+      cursor: not-allowed;
+  }
+  &.secondary {
+      color: white;
+      background-color: rgba(black, 0.1);
+      &.hover {
+          color: whitesmoke;
+          background-color: rgba(black, 0.15);
+      }
+      &.active {
+          color: whitesmoke;
+          background-color: rgba(black, 0.25);
+      }
+  }
+  &.tertiary {
+      color: white;
+      background-color: transparent;
+      box-shadow: initial;
+      font-size: 26px;
+      &.hover {
+          color: whitesmoke;
+          background-color: rgba(black, 0.15);
+          box-shadow: initial;
+      }
+      &.active {
+          color: whitesmoke;
+          background-color: rgba(black, 0.25);
+          box-shadow: initial;
+      }
+  }
+  
+  &.large {
+      font-size: 36px;
+      border-radius: 40px;
+      padding: 10px 30px;
+      margin: 10px;
+  }
+}
+
+.new-game-prompt {
+  @include futuraPtCondensed(700);
+  color: black;
+  font-size: 40px;
+  margin: 20px;
+}
