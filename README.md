@@ -1,6 +1,8 @@
 # Jeopardy! - Online Game
 > A simple Jeopardy trivia game built in React.js.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/27255c25-e79e-46d8-9bc2-c6e1e65b18ac/deploy-status)](https://app.netlify.com/sites/jlegreid-jeopardy/deploys)
+
 This Jeopardy game came about as a result of a coding challenge and a chance to learn React.js. It uses the [JService][jservice-url] API to feed the categories and clues. It is also an excersize in using React functional components and React hooks instead of class components.
 
 It was inspired by the first 1984 Jeopardy Television Game Show set where Alex Trebek first took over as host.
