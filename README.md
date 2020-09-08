@@ -63,7 +63,7 @@ J.Morgna Legreid – [@jlegreid](https://twitter.com/jlegreid) – jmorgan.legre
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[jservice-url]: http://jservice.io/
+[jservice-url]: https://jservice.io/
 [issues-url]: https://github.com/jlegreid/jeopardy-react/issues
 [jeopardy-logo]: public/header-logo.png
 [new-game]: public/new-game.png

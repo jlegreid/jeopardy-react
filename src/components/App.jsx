@@ -32,7 +32,7 @@ function App() {
 
       // Fetches the categories
       let categoryData = await fetch(
-        `http://jservice.io/api/categories?count=${categoryCount}&offset=${categoryOffset}`,
+        `https://jservice.io/api/categories?count=${categoryCount}&offset=${categoryOffset}`,
         {
           method: 'GET',
         },
@@ -43,7 +43,7 @@ function App() {
       const clueData = await Promise.all(
         categoryData.map(async (category) => {
           const data = await fetch(
-            `http://jservice.io/api/category?id=${category.id}`,
+            `https://jservice.io/api/category?id=${category.id}`,
             {
               method: 'GET',
             },
