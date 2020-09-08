@@ -67,4 +67,4 @@ J.Morgna Legreid – [@jlegreid](https://twitter.com/jlegreid) – jmorgan.legre
 [new-game]: public/new-game.png
 [full-game]: public/full-game.png
 [clue-card]: public/clue-card.png
-[jeopardy-set]: public/jeopardy-set.png
+[jeopardy-set]: public/og-set.png
