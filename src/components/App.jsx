@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameHeader from './GameHeader';
 import GameBoard from './game-board/GameBoard';
 import GameBoardActions from './game-board/GameBoardActions';
@@ -13,9 +13,10 @@ function App() {
   const [categoryCount, setCategoryCount] = useState(6);
   const [categoryOffset, setCategoryOffset] = useState(0);
   const [clueCount, setClueCount] = useState(5);
+  const [chosenCategoryCount, setChosenCategoryCount] = useState(6);
+  const [chosenClueCount, setChosenClueCount] = useState(5);
   const [cluesArray, setClues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [newGame, setNewGame] = useState(false);
   const [showNewGameModal, setShowNewGameModal] = useState(true);
   const [dailyDoubleId, setDailyDoubleId] = useState();
 
@@ -25,7 +26,7 @@ function App() {
   };
 
   // Populates the game board with new clues each time a new game is called for
-  if (newGame) {
+  useEffect(() => {
     const fetchCategories = async () => {
       setIsLoading(true);
       resetId();
@@ -58,26 +59,27 @@ function App() {
     };
 
     fetchCategories();
-    setNewGame(false);
-  }
+  }, [categoryCount, categoryOffset]);
 
   // Event Handlers
-  // Opens the new game modal and sets up the new game
+  // Closes the new game modal and sets up the new game
   const handleNewGame = () => {
     setShowNewGameModal(false);
-    setNewGame(true);
+    setCategoryCount(chosenCategoryCount);
+    setClueCount(chosenClueCount);
     cluesArray.length && setCategoryOffset(categoryOffset + categoryCount);
   };
 
   // Sets the preferred category count
-  const handleCategoryCount = (categoryCountNumber) => {
-    setCategoryCount(categoryCount + categoryCountNumber);
+  const handleChosenCategoryCount = (categoryCountNumber) => {
+    setChosenCategoryCount(chosenCategoryCount + categoryCountNumber);
   };
 
   // Sets the preferred clue count
-  const handleClueCount = (clueCountNumber) => {
-    setClueCount(clueCount + clueCountNumber);
+  const handleChosenClueCount = (clueCountNumber) => {
+    setChosenClueCount(chosenClueCount + clueCountNumber);
   };
+
 
   return (
     <ClueProvider context={dailyDoubleId}>
@@ -89,12 +91,12 @@ function App() {
               <div className='modal-body'>
                 <Shapes>
                   <GameBoardActions
-                    incrementCategoryUp={() => handleCategoryCount(1)}
-                    incrementCategoryDown={() => handleCategoryCount(-1)}
-                    incrementClueUp={() => handleClueCount(1)}
-                    incrementClueDown={() => handleClueCount(-1)}
-                    clueCount={clueCount}
-                    categoryCount={categoryCount}
+                    incrementCategoryUp={() => handleChosenCategoryCount(1)}
+                    incrementCategoryDown={() => handleChosenCategoryCount(-1)}
+                    incrementClueUp={() => handleChosenClueCount(1)}
+                    incrementClueDown={() => handleChosenClueCount(-1)}
+                    clueCount={chosenClueCount}
+                    categoryCount={chosenCategoryCount}
                     firstTime={!cluesArray.length}
                     startNewGame={handleNewGame}
                     onClose={() => setShowNewGameModal(false)}
