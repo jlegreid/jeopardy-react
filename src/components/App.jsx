@@ -50,11 +50,7 @@ const countReducer = (state, action) => {
 
 function App() {
   // Initial States
-  // const [categoryCount, setCategoryCount] = useState(null);
-  const [categoryOffset, setCategoryOffset] = useState(6);
-  // const [clueCount, setClueCount] = useState(null);
-  // const [chosenCategoryCount, setChosenCategoryCount] = useState(6);
-  // const [chosenClueCount, setChosenClueCount] = useState(5);
+  const [categoryOffset, setCategoryOffset] = useState(0);
   const [cluesArray, setClues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showNewGameModal, setShowNewGameModal] = useState(true);
@@ -68,55 +64,45 @@ function App() {
   };
 
   // Populates the game board with new clues each time a new game is called for
-  useEffect(() => {
-    const fetchCategories = async () => {
-      setIsLoading(true);
-      resetId();
+  const fetchCategories = async () => {
+    setIsLoading(true);
+    resetId();
 
-      // Fetches the categories
-      let categoryData = await fetch(
-        `https://jservice.io/api/categories?count=${count.categoryCount}&offset=${categoryOffset}`,
-        {
-          method: 'GET',
-        },
-      );
-      categoryData = await categoryData.json();
-      
-      // Waits for the categories to come back, then fetches the clues in each category
-      const clueData = await Promise.all(
-        categoryData.map(async (category) => {
-          const data = await fetch(
-            `https://jservice.io/api/category?id=${category.id}`,
-            {
-              method: 'GET',
-            },
-          );
-          return data.json();
-        }),
-      );
+    // Fetches the categories
+    let categoryData = await fetch(
+      `https://jservice.io/api/categories?count=${count.categoryCount}&offset=${categoryOffset}`,
+      {
+        method: 'GET',
+      },
+    );
+    categoryData = await categoryData.json();
+    
+    // Waits for the categories to come back, then fetches the clues in each category
+    const clueData = await Promise.all(
+      categoryData.map(async (category) => {
+        const data = await fetch(
+          `https://jservice.io/api/category?id=${category.id}`,
+          {
+            method: 'GET',
+          },
+        );
+        return data.json();
+      }),
+    );
 
-      setClues(clueData);
-      generateDailyDouble();
-      setIsLoading(false);
-      console.log(count);
-    };
-
-    fetchCategories();
-  }, [count.categoryCount, categoryOffset, count]);
+    setClues(clueData);
+    setCategoryOffset(categoryOffset + count.categoryCount);
+    generateDailyDouble();
+    setIsLoading(false);
+    console.log(count);
+  };
 
   // Event Handlers
   // Closes the new game modal and sets up the new game
   const handleNewGame = () => {
     setShowNewGameModal(false);
-    // setCategoryCount(chosenCategoryCount);
-    // setClueCount(chosenClueCount);
-    // cluesArray.length && setCategoryOffset(categoryOffset + count.categoryCount);
+    fetchCategories();
   };
-
-  // Sets the preferred category count
-  // const handleChosenCategoryCount = (categoryCountNumber) => {
-  //   setChosenCategoryCount(chosenCategoryCount + categoryCountNumber);
-  // };
 
   const handleCategoryCountUp = (chosenAmount) => {
     dispatch({ type: 'increase', item: 'category', amount: chosenAmount })
@@ -130,11 +116,6 @@ function App() {
   const handleClueCountDown = (chosenAmount) => {
     dispatch({ type: 'decrease', item: 'clue', amount: chosenAmount })
   }
-  // Sets the preferred clue count
-  // const handleChosenClueCount = (clueCountNumber) => {
-  //   setChosenClueCount(chosenClueCount + clueCountNumber);
-  // };
-
 
   return (
     <ClueProvider context={dailyDoubleId}>
